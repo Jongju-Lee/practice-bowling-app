@@ -22,18 +22,19 @@ const MyStyledTextField = styled(TextField)({
   },
 });
 
-const InputProfile = ({ idx, text }) => {
-  const number = idx + 1;
-
+const InputProfile = ({ idx, text, name, value, onChange }) => {
   return (
     <Grid container spacing={3}>
       <Grid>
         <MyStyledTextField
           hiddenLabel
           id="filled-hidden-label-normal"
-          placeholder={`${number}${text}`}
+          placeholder={`${idx}${text}`}
           variant="outlined"
           sx={{ mt: 0.5 }}
+          name={name}
+          value={value}
+          onChange={onChange}
         />
       </Grid>
     </Grid>

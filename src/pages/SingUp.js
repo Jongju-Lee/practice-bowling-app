@@ -6,10 +6,13 @@ import MyButton from "../components/MyButton";
 import InputAver from "../components/InputAver";
 
 const SignUp = () => {
-  const [clubName, setClubName] = useState("");
-  const [totalNumber, setTotalNumber] = useState("");
+  const [clubName, setClubName] = useState(""); // 클럽 이름
+  const [totalNumber, setTotalNumber] = useState(""); // 팀원 총원 수
+  const [memberNames, setMemberNames] = useState({});
+  const [memberAvers, setMemberAvers] = useState({});
 
   useEffect(() => {
+    // 클럽 이름 물어보는 모달
     const clubNameModal = async () => {
       const name = await createClubName();
       setClubName(name.value);
@@ -18,6 +21,7 @@ const SignUp = () => {
   }, []);
 
   useEffect(() => {
+    // 총원 몇명인지 물어보는 모달
     if (!clubName) {
       return;
     }
@@ -29,6 +33,19 @@ const SignUp = () => {
     setTotalNumber(number.value);
   };
 
+  const memberNameChange = (e) => {
+    // 멤버 이름 적으면 state로
+    setMemberNames({
+      ...memberNames,
+      [e.target.name]: e.target.value,
+    });
+    console.log(memberNames);
+  };
+
+  const onSubmit = () => {
+    // 저장버튼 눌렀을때
+  };
+
   return (
     <Grid container spacing={3} sx={{ maxWidth: "sm", margin: "0 auto" }}>
       <Grid xs={12} sx={{ margin: "-10px auto", textAlign: "center" }}>
@@ -36,21 +53,45 @@ const SignUp = () => {
       </Grid>
       <Grid xs={12} sx={{ display: "flex", justifyContent: "space-evenly" }}>
         <div>
+          {/* 총원 수에 따라서 input 수가 정해짐 */}
           {totalNumber
-            ? Array.from({ length: totalNumber }, (_, idx) => (
-                <InputProfile key={idx} idx={idx} text={"번째 회원 이름"} />
-              ))
+            ? Array.from({ length: totalNumber }, (_, idx) => {
+                const index = idx + 1;
+                const name = `memberName${index}`;
+                return (
+                  <InputProfile
+                    key={idx}
+                    idx={index}
+                    text={"번째 회원 이름"}
+                    name={name}
+                    value={memberNames[name]}
+                    onChange={memberNameChange}
+                  />
+                );
+              })
             : ""}
         </div>
         <div>
+          {/* 총원 수에 따라서 select 수가 정해짐 */}
           {totalNumber
-            ? Array.from({ length: totalNumber }, (_, idx) => (
-                <InputAver key={idx} idx={idx} text={"번째 회원 aver"} />
-              ))
+            ? Array.from({ length: totalNumber }, (_, idx) => {
+                const index = idx + 1;
+                const name = `memberAver${index}`;
+                return (
+                  <InputAver
+                    key={idx}
+                    idx={index}
+                    name={name}
+                    value={memberAvers[name]}
+                    memberAvers={{ ...memberAvers }}
+                    setMemberAvers={setMemberAvers}
+                  />
+                );
+              })
             : ""}
         </div>
       </Grid>
-      <Grid xs={12} sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+      <Grid xs={12} sx={{ display: "flex", justifyContent: "center", my: 2 }}>
         <div>{totalNumber ? <MyButton text="저장하기" /> : ""}</div>
       </Grid>
     </Grid>
