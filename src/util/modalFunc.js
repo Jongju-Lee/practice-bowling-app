@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export const createClubName = () => {
   const name = Swal.fire({
@@ -63,3 +64,48 @@ export const totalNumberOfMembers = () => {
   });
   return number;
 };
+
+export const backBtnClickModal = () => {
+  const handleClick = () => {
+    Swal.fire({
+      title: "경고!",
+      text: "작성한 내용이 사라집니다. 계속하시겠습니까?",
+      icon: "warning",
+      color: "#777",
+      background: "#333",
+      showCancelButton: true,
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // 사용자가 확인 버튼을 눌렀을 때의 로직
+        window.history.back();
+      }
+    });
+  };
+  handleClick();
+};
+
+// export const saveBtnClickModal = () => {
+//   const handleClick = () => {
+//     Swal.fire({
+//       title: "저장",
+//       text: "현재 상태로 저장하시겠습니까?",
+//       icon: "question",
+//       color: "#777",
+//       background: "#333",
+//       showCancelButton: true,
+//       confirmButtonText: "저장",
+//       cancelButtonText: "취소",
+//     }).then((result) => {
+//       if (result.isConfirmed) {
+//         // 사용자가 저장을 클릭한 경우
+//         Swal.fire("저장되었습니다!", "", "success");
+//       } else {
+//         // 사용자가 취소를 클릭한 경우
+//         Swal.fire("취소되었습니다", "", "info");
+//       }
+//     });
+//   };
+//   handleClick();
+// };

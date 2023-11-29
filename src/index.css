@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
 /* COMMON */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Roboto", "Noto Sans KR", sans-serif;
+  font-family: "Noto Sans KR", "Roboto", sans-serif;
 }
 
 *::-webkit-scrollbar {

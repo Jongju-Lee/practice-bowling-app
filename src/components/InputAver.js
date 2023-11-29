@@ -4,7 +4,7 @@ import Select from "@mui/material/Select";
 import { useState } from "react";
 
 const InputAver = ({ name, memberAvers, setMemberAvers }) => {
-  const [defaultValue, setDefaultValue] = useState(150);
+  const [defaultValue, setDefaultValue] = useState(0);
 
   const changeDefaultValue = (e) => {
     setDefaultValue(e.target.value);

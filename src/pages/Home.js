@@ -1,9 +1,25 @@
-import React from "react";
 import styled from "styled-components";
 import TypeIt from "typeit-react";
 
 const SuperStrong = ({ children }) => {
-  return <strong style={{ fontSize: "55px" }}>{children}</strong>;
+  return (
+    <strong style={{ fontSize: "55px", fontFamily: "Black Ops One, cursive" }}>
+      {children}
+    </strong>
+  );
+};
+const NewFont = ({ children }) => {
+  return (
+    <h2
+      style={{
+        fontFamily: "Black Han Sans, sans-serif",
+        fontWeight: 100,
+        fontSize: "1.5rem",
+      }}
+    >
+      {children}
+    </h2>
+  );
 };
 
 const Home = () => {
@@ -13,15 +29,23 @@ const Home = () => {
         <div className="typeit_wrapper">
           <TypeIt
             options={{
-              speed: 300,
+              speed: 150,
+              fontSize: "80px",
             }}
           >
             <SuperStrong>AWESOME BOWLING!</SuperStrong>
           </TypeIt>
         </div>
-        <h2>환영합니다!</h2>
-        <h2>우측 상단의 SIGN UP을 눌러</h2>
-        <h2>새로운 팀을 등록해 주세요!</h2>
+        <div
+          style={{
+            fontFamily: "Black Han Sans, sans-serif",
+            fontWeight: 200,
+          }}
+        >
+          <NewFont>환영합니다!</NewFont>
+          <NewFont>우측 상단의 SIGN UP을 눌러</NewFont>
+          <NewFont>새로운 팀을 등록해 주세요!</NewFont>
+        </div>
       </header>
     </Wrapper>
   );
